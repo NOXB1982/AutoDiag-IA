@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  password   String
+  name       String?
+  role       String   @default("MECHANIC") // "SUPER_ADMIN" or "MECHANIC"
+  createdAt  DateTime @default(now())
+  lastLogin  DateTime?
+  lastDevice String?
+
+  diagnostics Diagnostic[]
+}
+
+model Diagnostic {
+  id         String   @id @default(cuid())
+  userId     String
+  vehicle    String
+  parameters String   // Stored as JSON string
+  diagnosis  String
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

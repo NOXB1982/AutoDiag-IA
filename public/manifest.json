@@ -1,0 +1,16 @@
+{
+    "name": "SalesMaster CRM",
+    "short_name": "SalesMaster",
+    "description": "App de gestão de clientes, visitas e report diário de viatura.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2563eb",
+    "icons": [
+        {
+            "src": "/icon-512x512.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
