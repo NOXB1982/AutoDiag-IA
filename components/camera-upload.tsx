@@ -40,8 +40,9 @@ export function CameraUpload({ onResult }: CameraUploadProps) {
             const base64Image = await processImage(file)
             const result = await diagnoseImage(base64Image)
             onResult(result)
-        } catch (err: any) {
-            setError(err.message || "Ocorreu um erro ao processar a imagem. Confirme a GEMINI_API_KEY no .env.local")
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Ocorreu um erro ao processar a imagem. Confirme a GEMINI_API_KEY no .env.local"
+            setError(errorMessage)
         } finally {
             setIsProcessing(false)
             if (fileInputRef.current) {

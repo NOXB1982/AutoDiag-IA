@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Users, CalendarCheck, Car, FileText, Briefcase, Settings } from "lucide-react"
+import { Home, Car, Briefcase, Settings } from "lucide-react"
 
 const baseNavItems = [
     { name: "Painel IA", href: "/", icon: Home },
